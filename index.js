@@ -1,14 +1,14 @@
 const express = require('express');
 const app = express();
+require('dotenv').config()
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 const cors = require('cors');
 const { ObjectId } = require('mongodb');
 app.use(cors());
-const password ='VolunteerData2020';
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://VolunteerData:VolunteerData2020@cluster0.giumd.mongodb.net/VolunteerData?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.giumd.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 app.get('/', (req, res) => {
     res.send('hello i am working')
 })
