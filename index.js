@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 const cors = require('cors');
 const { ObjectId } = require('mongodb');
 app.use(cors());
+const port = 5000;
 const MongoClient = require('mongodb').MongoClient;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.giumd.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 app.get('/', (req, res) => {
@@ -47,4 +48,4 @@ client.connect(err => {
 });
 
 
-app.listen(5000);
+app.listen(process.env.PORT || port);
